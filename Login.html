@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bolsotrello</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="content">
+        <h1 id="titulo">Bem-vindos ao <br>Bolsotrello</h1>
+        <img id="imagemlogo" src="1744298589949.png">
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Endereço de E-mail:</label>
+                <input type="email" id="email" placeholder="Digite seu e-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" placeholder="Digite sua senha" required>
+                <a href="#">Esqueci minha conta...</a>
+            </div>
+            <button onclick="window.location.href='menu.html'" type="submit" class="btn">Entrar</button>
+        </form>
+        <div class="divider"> ou prossiga com:</div>
+        <div class="social-login">
+            <button><img src="download.png">Google</button>
+            <button><img src="Microsoft_logo.svg.png">Microsoft</button>
+            <button><img src="747.png">Apple</button>
+        </div>
+        <div class="form-group">
+            <br>
+            <a href="#">Criar uma conta</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!email || !password) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+            const Login = {email, password};
+
+            const usuario = JSON.parse(localStorage.getItem("usuario")) || [];
+            usuario.push(Login);
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+            document.getElementById("login-form").reset();
+            alert("Cadastro salvo com sucesso");
+
+
+        });
+    </script>
+</body>
+</html>

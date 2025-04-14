@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOLSOTRELLO</title>
+  <link rel="stylesheet" href="menu.css" />
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo-container">
+      <img src="https://i.pinimg.com/474x/f4/e3/d6/f4e3d6b55f672d5f2ef716f756fff1f8.jpg" class="site-icon" alt="logo">
+      <h1>BOLSOTRELLO</h1>
+    </div>
+    <div class="profile-dropdown">
+      <div class="user-icon" onclick="toggleProfileDropdown()"></div>
+      <div class="profile-menu hidden" id="profileMenu">
+        <button>Gerenciar Perfil</button>
+        <button>Configurações</button>
+        <button>Ajuda</button>
+        <button>Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar">
+      <button class="purple-button" onclick="toggleIntegrantes()">Integrante (ADM)</button>
+      <div id="integrantes-list" class="hidden"></div>
+      <input type="text" id="newMemberInput" placeholder="Novo membro" />
+      <button onclick="addMember()">Adicionar Membro</button>
+
+      <button class="green-button">Gerenciar Membros</button>
+      <hr />
+      <button class="purple-button" onclick="toggleProjetos()">↓ Meus Quadros ↓</button>
+      <div id="projetos-list" class="hidden"></div>
+      <input type="text" id="newProjectInput" placeholder="Novo Projeto" />
+      <button onclick="addProjeto()">Adicionar Projeto</button>
+      <hr />
+      <button class="green-button">Suporte</button>
+      <button class="white-button">Sair</button>
+    </div>
+
+    <div class="board">
+      <h2 id="project-title">Meu Quadro</h2>
+      <div class="columns" id="columns-container">
+        <div class="column" id="col-afazer" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3 contenteditable="true" oninput="saveToStorage()">A Fazer</h3>
+          <button class="add-task-button" onclick="addTask('col-afazer')">+</button>
+        </div>
+        <div class="column" id="col-andamento" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3 contenteditable="true" oninput="saveToStorage()">Em Andamento</h3>
+          <button class="add-task-button" onclick="addTask('col-andamento')">+</button>
+        </div>
+        <div class="column" id="col-revisando" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3 contenteditable="true" oninput="saveToStorage()">Revisando</h3>
+          <button class="add-task-button" onclick="addTask('col-revisando')">+</button>
+        </div>
+        <div class="column" id="col-concluido" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3 contenteditable="true" oninput="saveToStorage()">Concluído</h3>
+          <button class="add-task-button" onclick="addTask('col-concluido')">+</button>
+        </div>
+      </div>
+      <button class="add-column-button" onclick="addNewColumn()">+ Adicionar Quadro</button>
+    </div>
+  </div>
+
+  <script src="menu.js"></script>
+</body>
+</html>
