@@ -9,6 +9,18 @@ body {
 
 }
 
+.textura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/Bolsotrello/textura.png');
+    background-repeat: repeat;
+    background-size: 50%;
+    opacity: 0.3; 
+    z-index: -1; 
+  }
 .content {
     width: 100%;
     max-width: 300px; 
