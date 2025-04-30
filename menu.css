@@ -1,244 +1,247 @@
-{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-  }
-  
-  body {
-    background-color: #2E4D50;
-    color: white;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .navbar {
-    background-color: #0c060a;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .site-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-  }
-  
-  .user-icon {
-    width: 35px;
-    height: 35px;
-    background-color: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .profile-dropdown {
-    position: relative;
-  }
-  
-  .profile-menu {
-    position: absolute;
-    right: 0;
-    top: 45px;
-    background: #fff;
-    color: #111;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0005;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .profile-menu button {
-    padding: 10px;
-    border: none;
-    background: none;
-    text-align: left;
-    cursor: pointer;
-  }
-  
-  .profile-menu button:hover {
-    background-color: #eee;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .main {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  .sidebar {
-    background-color: #190919;
-    width: 230px;
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-right: 2px solid #000;
-  }
-  
-  .sidebar button,
-  .sidebar input {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .sidebar input {
-    background: #fff;
-    color: #000;
-    margin-bottom: 5px;
-  }
-  
-  .green-button {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .purple-button {
-    background-color: #3f0d2e;
-    color: #e9c1ff;
-  }
-  
-  .project-button {
-    background-color: #3a6161;
-    color: #a9dfdf;
-    margin: 2px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 8px;
-    border-radius: 5px;
-  }
-  
-  .project-button.active {
-    background-color: #40a670;
-  }
-  
-  .project-button span {
-    flex-grow: 1;
-    cursor: pointer;
-  }
-  
-  .project-button button {
-    background: red;
-    color: white;
-    border: none;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-  
-  .white-button {
-    background-color: #eee;
-    color: #111;
-  }
-  
-  .board {
-    flex-grow: 1;
-    padding: 40px 20px;
-    overflow-x: auto;
-  }
-  
-  .columns {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .column {
-    background-color: #190919;
-    border-radius: 10px;
-    width: 200px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .column h3 {
-    font-size: 1.2rem;
-    outline: none;
-  }
-  
-  .task {
-    background-color: #eee;
-    color: #111;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: grab;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task button {
-    background: red;
-    border: none;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-task-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  
-  .member-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #3f0d2e;
-    color: #e9c1ff;
-    padding: 5px 8px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .member-item button {
-    background: red;
-    border: none;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  /* ... estilos existentes ... */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0d47a1;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #1976d2;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.user-icon {
+  width: 35px;
+  height: 35px;
+  background-color: #90caf9;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #ffffff;
+  color: #0d47a1;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #0003;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-menu button {
+  padding: 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-menu button:hover {
+  background-color: #e3f2fd;
+}
+
+.hidden {
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #e3f2fd;
+  width: 230px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 2px solid #90caf9;
+}
+
+.sidebar button,
+.sidebar input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar input {
+  background: #ffffff;
+  color: #0d47a1;
+  margin-bottom: 5px;
+  border: 1px solid #90caf9;
+}
+
+.green-button {
+  background-color: #1976d2;
+  color: white;
+}
+
+.purple-button {
+  background-color: #1565c0;
+  color: white;
+}
+
+.project-button {
+  background-color: #bbdefb;
+  color: #0d47a1;
+  margin: 2px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.project-button.active {
+  background-color: #64b5f6;
+}
+
+.project-button span {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.project-button button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.white-button {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.board {
+  flex-grow: 1;
+  padding: 40px 20px;
+  overflow-x: auto;
+  background-color: #f5faff;
+}
+
+.columns {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  background-color: #e3f2fd;
+  border-radius: 10px;
+  width: 200px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.column h3 {
+  font-size: 1.2rem;
+  outline: none;
+  color: #0d47a1;
+}
+
+.task {
+  background-color: #ffffff;
+  color: #0d47a1;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #90caf9;
+}
+
+.task button {
+  background: #d32f2f;
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-task-button {
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #bbdefb;
+  color: #0d47a1;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.member-item button {
+  background: #d32f2f;
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
 .add-column-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3a6161;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .add-column-button:hover {
-    background-color: #2d4b4b;
-  }
-      
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.add-column-button:hover {
+  background-color: #1565c0;
+}
