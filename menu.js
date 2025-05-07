@@ -92,6 +92,7 @@ function createColumn(id, title = "Novo Quadro", tasks = []) {
   column.innerHTML = `
     <h3 contenteditable="true" oninput="saveToStorage()">${title}</h3>
     <button class="add-task-button" onclick="addTask('${id}')">+</button>
+    <button class="remover-lista" onclick="this.parentElement.remove(); saveToStorage();">X</button>
   `;
   container.appendChild(column);
 

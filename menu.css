@@ -2,12 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  background-color: #ffffff;
-  color: #0d47a1;
+  background-color: #f5f9fc; /* Cor de fundo suave */
+  color: #ffffff; /* Cor do texto principal */
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -15,12 +15,11 @@ body {
 }
 
 .navbar {
-  background-color: #1976d2;
+  background-color: #0077b6; /* Azul escuro */
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
 }
 
 .logo-container {
@@ -38,7 +37,7 @@ body {
 .user-icon {
   width: 35px;
   height: 35px;
-  background-color: #90caf9;
+  background-color: #d1d8e0;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -51,10 +50,10 @@ body {
   position: absolute;
   right: 0;
   top: 45px;
-  background: #ffffff;
-  color: #0d47a1;
+  background: #fff;
+  color: #111;
   border-radius: 5px;
-  box-shadow: 0 0 5px #0003;
+  box-shadow: 0 0 5px #0005;
   display: flex;
   flex-direction: column;
 }
@@ -68,7 +67,7 @@ body {
 }
 
 .profile-menu button:hover {
-  background-color: #e3f2fd;
+  background-color: #f2f2f2;
 }
 
 .hidden {
@@ -82,13 +81,13 @@ body {
 }
 
 .sidebar {
-  background-color: #e3f2fd;
+  background-color: #e1e9f0; /* Azul claro */
   width: 230px;
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-right: 2px solid #90caf9;
+  border-right: 2px solid #c1c8d5;
 }
 
 .sidebar button,
@@ -101,25 +100,24 @@ body {
 }
 
 .sidebar input {
-  background: #ffffff;
-  color: #0d47a1;
+  background: #fff;
+  color: #2c3e50;
   margin-bottom: 5px;
-  border: 1px solid #90caf9;
 }
 
 .green-button {
-  background-color: #1976d2;
+  background-color: #38a1db; /* Azul mais claro */
   color: white;
 }
 
 .purple-button {
-  background-color: #1565c0;
-  color: white;
+  background-color: #1c3b72; /* Azul escuro */
+  color: #a9d6f5;
 }
 
 .project-button {
-  background-color: #bbdefb;
-  color: #0d47a1;
+  background-color: #4a90e2; /* Azul mais suave */
+  color: white;
   margin: 2px 0;
   display: flex;
   justify-content: space-between;
@@ -129,7 +127,7 @@ body {
 }
 
 .project-button.active {
-  background-color: #64b5f6;
+  background-color: #0077b6; /* Azul escuro */
 }
 
 .project-button span {
@@ -138,7 +136,7 @@ body {
 }
 
 .project-button button {
-  background: #d32f2f;
+  background: #e74c3c; /* Vermelho suave */
   color: white;
   border: none;
   padding: 2px 6px;
@@ -148,15 +146,14 @@ body {
 }
 
 .white-button {
-  background-color: #e3f2fd;
-  color: #0d47a1;
+  background-color: #f2f2f2; /* Branco suave */
+  color: #2c3e50;
 }
 
 .board {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
-  background-color: #f5faff;
 }
 
 .columns {
@@ -165,36 +162,35 @@ body {
 }
 
 .column {
-  background-color: #e3f2fd;
+  background-color: #ffffff; /* Branco puro */
   border-radius: 10px;
-  width: 200px;
+  width: 220px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .column h3 {
   font-size: 1.2rem;
   outline: none;
-  color: #0d47a1;
+  color: #0077b6; /* Azul escuro */
 }
 
 .task {
-  background-color: #ffffff;
-  color: #0d47a1;
+  background-color: #f5f9fc; /* Azul muito suave */
+  color: #2c3e50;
   padding: 8px;
   border-radius: 5px;
   cursor: grab;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #90caf9;
 }
 
 .task button {
-  background: #d32f2f;
+  background: #d32f2f; /* Vermelho suave */
   border: none;
   color: white;
   padding: 2px 6px;
@@ -203,26 +199,48 @@ body {
 }
 
 .add-task-button {
-  background-color: #1565c0;
+  background-color: #38a1db; /* Azul mais claro */
   color: white;
   border: none;
   padding: 5px;
   border-radius: 5px;
 }
 
+.add-task-button:hover {
+  background: #0d47a1;
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+ }
+
+ .remover-lista {
+  background: #d32f2f;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+ .remover-lista:hover { 
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+  background: #a82626;
+}
+
 .member-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #bbdefb;
-  color: #0d47a1;
+  background: #d1d8e0; /* Azul muito claro */
+  color: #2c3e50;
   padding: 5px 8px;
   border-radius: 5px;
   margin-bottom: 5px;
 }
 
 .member-item button {
-  background: #d32f2f;
+  background: #e74c3c; /* Vermelho suave */
   border: none;
   color: white;
   padding: 2px 6px;
@@ -234,7 +252,7 @@ body {
 .add-column-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #1976d2;
+  background-color: #0077b6; /* Azul escuro */
   color: white;
   border: none;
   border-radius: 6px;
@@ -243,5 +261,5 @@ body {
 }
 
 .add-column-button:hover {
-  background-color: #1565c0;
+  background-color: #005f87; /* Azul mais profundo */
 }
