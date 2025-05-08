@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #f5f9fc; /* Cor de fundo suave */
-  color: #ffffff; /* Cor do texto principal */
+  background-color: #f5f9fc;
+  color: #ffffff;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-  background-color: #0077b6; /* Azul escuro */
+  background-color: #0077b6;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
@@ -78,16 +78,31 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .sidebar {
-  background-color: #e1e9f0; /* Azul claro */
+  background-color: #e1e9f0;
   width: 230px;
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   border-right: 2px solid #c1c8d5;
+  transition: all 0.3s ease;
+}
+
+/* Esconde completamente a sidebar */
+.sidebar-hidden .sidebar {
+  display: none;
+}
+
+/* Expande o quadro para ocupar todo o espaço */
+.sidebar-hidden .board {
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 40px; /* para manter espaçamento interno */
 }
 
 .sidebar button,
@@ -106,17 +121,17 @@ body {
 }
 
 .green-button {
-  background-color: #38a1db; /* Azul mais claro */
+  background-color: #38a1db;
   color: white;
 }
 
 .purple-button {
-  background-color: #1c3b72; /* Azul escuro */
+  background-color: #1c3b72;
   color: #a9d6f5;
 }
 
 .project-button {
-  background-color: #4a90e2; /* Azul mais suave */
+  background-color: #4a90e2;
   color: white;
   margin: 2px 0;
   display: flex;
@@ -127,7 +142,7 @@ body {
 }
 
 .project-button.active {
-  background-color: #0077b6; /* Azul escuro */
+  background-color: #0077b6;
 }
 
 .project-button span {
@@ -136,7 +151,7 @@ body {
 }
 
 .project-button button {
-  background: #e74c3c; /* Vermelho suave */
+  background: #e74c3c;
   color: white;
   border: none;
   padding: 2px 6px;
@@ -146,7 +161,7 @@ body {
 }
 
 .white-button {
-  background-color: #f2f2f2; /* Branco suave */
+  background-color: #f2f2f2;
   color: #2c3e50;
 }
 
@@ -154,6 +169,8 @@ body {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
+  color: #0d47a1;
+  transition: all 0.3s ease;
 }
 
 .columns {
@@ -162,7 +179,7 @@ body {
 }
 
 .column {
-  background-color: #ffffff; /* Branco puro */
+  background-color: #ffffff;
   border-radius: 10px;
   width: 220px;
   padding: 15px;
@@ -175,11 +192,11 @@ body {
 .column h3 {
   font-size: 1.2rem;
   outline: none;
-  color: #0077b6; /* Azul escuro */
+  color: #0077b6;
 }
 
 .task {
-  background-color: #f5f9fc; /* Azul muito suave */
+  background-color: #f5f9fc;
   color: #2c3e50;
   padding: 8px;
   border-radius: 5px;
@@ -190,7 +207,7 @@ body {
 }
 
 .task button {
-  background: #d32f2f; /* Vermelho suave */
+  background: #d32f2f;
   border: none;
   color: white;
   padding: 2px 6px;
@@ -199,7 +216,7 @@ body {
 }
 
 .add-task-button {
-  background-color: #38a1db; /* Azul mais claro */
+  background-color: #38a1db;
   color: white;
   border: none;
   padding: 5px;
@@ -211,9 +228,9 @@ body {
   cursor: pointer;
   transform: scale(1.02);
   transition: all 0.2s ease;
- }
+}
 
- .remover-lista {
+.remover-lista {
   background: #d32f2f;
   border: none;
   color: white;
@@ -221,8 +238,8 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
- 
- .remover-lista:hover { 
+
+.remover-lista:hover {
   transform: scale(1.02);
   transition: all 0.2s ease;
   background: #a82626;
@@ -232,7 +249,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #d1d8e0; /* Azul muito claro */
+  background: #d1d8e0;
   color: #2c3e50;
   padding: 5px 8px;
   border-radius: 5px;
@@ -240,7 +257,7 @@ body {
 }
 
 .member-item button {
-  background: #e74c3c; /* Vermelho suave */
+  background: #e74c3c;
   border: none;
   color: white;
   padding: 2px 6px;
@@ -252,7 +269,7 @@ body {
 .add-column-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #0077b6; /* Azul escuro */
+  background-color: #0077b6;
   color: white;
   border: none;
   border-radius: 6px;
@@ -261,5 +278,18 @@ body {
 }
 
 .add-column-button:hover {
-  background-color: #005f87; /* Azul mais profundo */
+  background-color: #005f87;
+}
+
+/* Botão de toggle */
+#toggleSidebarBtn {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background-color: #0077b6;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
 }
