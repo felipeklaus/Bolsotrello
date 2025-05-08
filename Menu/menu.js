@@ -187,3 +187,12 @@ function loadMembros() {
     list.appendChild(div);
   });
 }
+
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const main = document.querySelector('.main');
+
+  sidebar.classList.toggle('hidden');
+  main.classList.toggle('full-width');
+}
+

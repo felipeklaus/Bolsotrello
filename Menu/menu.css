@@ -145,31 +145,39 @@ body {
   cursor: pointer;
 }
 
-.white-button {
-  background-color: #f2f2f2; /* Branco suave */
-  color: #2c3e50;
+.sair-button {
+  background-color: #c94242; /* Branco suave */
+  color: #ffffff;
 }
 
 .board {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
+  color:#1c3b72;
+ 
 }
 
 .columns {
   display: flex;
   gap: 20px;
+  padding: 10px 0 10px 10px;
+  overflow-x: auto; /* Permite o scroll horizontal */
+  overflow-y: hidden; /* Evita scroll vertical */
+  white-space: nowrap; /* Impede quebra de linha */
 }
 
 .column {
+  
+  flex: 0 0 220px; /* Define largura fixa de 220px */
   background-color: #ffffff; /* Branco puro */
   border-radius: 10px;
-  width: 220px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .column h3 {
@@ -262,4 +270,35 @@ body {
 
 .add-column-button:hover {
   background-color: #005f87; /* Azul mais profundo */
+}
+
+/* Botão fixo no canto inferior esquerdo */
+#toggle-sidebar-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Quando a sidebar estiver oculta */
+.sidebar.hidden {
+  display: none;
+}
+
+.main.full-width .board {
+  width: 100%;
+}
+
+.main.full-width {
+  display: flex;
+}
+
+.board {
+  flex: 1;
 }

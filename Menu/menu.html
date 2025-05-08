@@ -6,6 +6,7 @@
   <title>BOLSOTRELLO</title>
   <link rel="stylesheet" href="menu.css" />
 </head>
+
 <body>
   <div class="navbar">
     <div class="logo-container">
@@ -32,13 +33,13 @@
 
       <button class="green-button">Gerenciar Membros</button>
       <hr />
-      <button class="purple-button" onclick="toggleProjetos()">↓ Meus Quadros ↓</button>
+      <button class="purple-button" onclick="toggleProjetos()">Meus projetos</button>
       <div id="projetos-list" class="hidden"></div>
       <input type="text" id="newProjectInput" placeholder="Novo Projeto" />
       <button onclick="addProjeto()">Adicionar Projeto</button>
       <hr />
       <button class="green-button">Suporte</button>
-      <button class="white-button">Sair</button>
+      <button class="sair-button" onclick="window.location.href='../Login/Login.html'">Sair</button>
     </div>
 
     <div class="board">
@@ -66,5 +67,7 @@
   </div>
 
   <script src="menu.js"></script>
+  <button id="toggle-sidebar-btn" onclick="toggleSidebar()">☰</button>
+
 </body>
 </html>
