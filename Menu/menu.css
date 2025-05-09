@@ -160,33 +160,54 @@ body {
   cursor: pointer;
 }
 
+<<<<<<< HEAD:menu.css
 .white-button {
   background-color: #f2f2f2;
   color: #2c3e50;
+=======
+.sair-button {
+  background-color: #c94242; /* Branco suave */
+  color: #ffffff;
+>>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
 }
 
 .board {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
+<<<<<<< HEAD:menu.css
   color: #0d47a1;
   transition: all 0.3s ease;
+=======
+  color:#1c3b72;
+ 
+>>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
 }
 
 .columns {
   display: flex;
   gap: 20px;
+  padding: 10px 0 10px 10px;
+  overflow-x: auto; /* Permite o scroll horizontal */
+  overflow-y: hidden; /* Evita scroll vertical */
+  white-space: nowrap; /* Impede quebra de linha */
 }
 
 .column {
+<<<<<<< HEAD:menu.css
   background-color: #ffffff;
+=======
+  
+  flex: 0 0 220px; /* Define largura fixa de 220px */
+  background-color: #ffffff; /* Branco puro */
+>>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
   border-radius: 10px;
-  width: 220px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .column h3 {
@@ -278,6 +299,7 @@ body {
 }
 
 .add-column-button:hover {
+<<<<<<< HEAD:menu.css
   background-color: #005f87;
 }
 
@@ -293,3 +315,38 @@ body {
   cursor: pointer;
   z-index: 1000;
 }
+=======
+  background-color: #005f87; /* Azul mais profundo */
+}
+
+/* Botão fixo no canto inferior esquerdo */
+#toggle-sidebar-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Quando a sidebar estiver oculta */
+.sidebar.hidden {
+  display: none;
+}
+
+.main.full-width .board {
+  width: 100%;
+}
+
+.main.full-width {
+  display: flex;
+}
+
+.board {
+  flex: 1;
+}
+>>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css

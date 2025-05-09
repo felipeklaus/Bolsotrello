@@ -188,6 +188,7 @@ function loadMembros() {
   });
 }
 
+<<<<<<< HEAD:menu.js
 
 function toggleSidebar() {
   const main = document.getElementById('mainContainer');
@@ -210,5 +211,13 @@ function sair() {
     // Exemplo: Redirecionar para página de login
     window.location.href = "login.html"; // ou qualquer página inicial
   }
+=======
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const main = document.querySelector('.main');
+
+  sidebar.classList.toggle('hidden');
+  main.classList.toggle('full-width');
+>>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.js
 }
 
