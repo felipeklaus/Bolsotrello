@@ -14,19 +14,18 @@
       <h1>BOLSOTRELLO</h1>
     </div>
     <div class="profile-dropdown">
-      <div class="user-icon" onclick="toggleProfileDropdown()"><img src="rodinei.jpg"></div>
+      <div class="user-icon" onclick="toggleProfileDropdown()" ><img src="rodinei.jpg"></div>
       <div class="profile-menu hidden" id="profileMenu">
-        <button onclick="gerenciarPerfil()">Gerenciar Perfil</button>
-        <button onclick="abrirConfiguracoes()">Configurações</button>
-        <button onclick="sair()">Sair</button>
-
+        <button>Gerenciar Perfil</button>
+        <button>Configurações</button>
+        <button>Ajuda</button>
+        <button>Sair</button>
       </div>
     </div>
   </div>
 
-  <div class="main" id="mainContainer">
-    <div id="toggleSidebarBtn" onclick="toggleSidebar()">☰</div>
-    <div class="sidebar" id="sidebar">
+  <div class="main">
+    <div class="sidebar">
       <button class="purple-button" onclick="toggleIntegrantes()">Integrante (ADM)</button>
       <div id="integrantes-list" class="hidden"></div>
       <input type="text" id="newMemberInput" placeholder="Novo membro" />
@@ -34,11 +33,7 @@
 
       <button class="green-button">Gerenciar Membros</button>
       <hr />
-<<<<<<< HEAD:menu.html
-      <button class="purple-button" onclick="toggleProjetos()">↓ Meus projetos ↓</button>
-=======
       <button class="purple-button" onclick="toggleProjetos()">Meus projetos</button>
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.html
       <div id="projetos-list" class="hidden"></div>
       <input type="text" id="newProjectInput" placeholder="Novo Projeto" />
       <button onclick="addProjeto()">Adicionar Projeto</button>
@@ -47,7 +42,7 @@
       <button class="sair-button" onclick="window.location.href='../Login/Login.html'">Sair</button>
     </div>
 
-    <div class="board" id="board">
+    <div class="board">
       <h2 id="project-title">Meu Quadro</h2>
       <div class="columns" id="columns-container">
         <div class="column" id="col-afazer" ondrop="drop(event)" ondragover="allowDrop(event)">

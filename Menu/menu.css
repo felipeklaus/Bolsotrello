@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #f5f9fc;
-  color: #ffffff;
+  background-color: #f5f9fc; /* Cor de fundo suave */
+  color: #ffffff; /* Cor do texto principal */
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-  background-color: #0077b6;
+  background-color: #0077b6; /* Azul escuro */
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
@@ -78,31 +78,16 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .sidebar {
-  background-color: #e1e9f0;
+  background-color: #e1e9f0; /* Azul claro */
   width: 230px;
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   border-right: 2px solid #c1c8d5;
-  transition: all 0.3s ease;
-}
-
-/* Esconde completamente a sidebar */
-.sidebar-hidden .sidebar {
-  display: none;
-}
-
-/* Expande o quadro para ocupar todo o espaço */
-.sidebar-hidden .board {
-  flex: 1 1 100%;
-  width: 100%;
-  max-width: 100%;
-  padding-left: 40px; /* para manter espaçamento interno */
 }
 
 .sidebar button,
@@ -121,17 +106,17 @@ body {
 }
 
 .green-button {
-  background-color: #38a1db;
+  background-color: #38a1db; /* Azul mais claro */
   color: white;
 }
 
 .purple-button {
-  background-color: #1c3b72;
+  background-color: #1c3b72; /* Azul escuro */
   color: #a9d6f5;
 }
 
 .project-button {
-  background-color: #4a90e2;
+  background-color: #4a90e2; /* Azul mais suave */
   color: white;
   margin: 2px 0;
   display: flex;
@@ -142,7 +127,7 @@ body {
 }
 
 .project-button.active {
-  background-color: #0077b6;
+  background-color: #0077b6; /* Azul escuro */
 }
 
 .project-button span {
@@ -151,7 +136,7 @@ body {
 }
 
 .project-button button {
-  background: #e74c3c;
+  background: #e74c3c; /* Vermelho suave */
   color: white;
   border: none;
   padding: 2px 6px;
@@ -160,28 +145,17 @@ body {
   cursor: pointer;
 }
 
-<<<<<<< HEAD:menu.css
-.white-button {
-  background-color: #f2f2f2;
-  color: #2c3e50;
-=======
 .sair-button {
   background-color: #c94242; /* Branco suave */
   color: #ffffff;
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
 }
 
 .board {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
-<<<<<<< HEAD:menu.css
-  color: #0d47a1;
-  transition: all 0.3s ease;
-=======
   color:#1c3b72;
  
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
 }
 
 .columns {
@@ -194,13 +168,9 @@ body {
 }
 
 .column {
-<<<<<<< HEAD:menu.css
-  background-color: #ffffff;
-=======
   
   flex: 0 0 220px; /* Define largura fixa de 220px */
   background-color: #ffffff; /* Branco puro */
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css
   border-radius: 10px;
   padding: 15px;
   display: flex;
@@ -213,11 +183,11 @@ body {
 .column h3 {
   font-size: 1.2rem;
   outline: none;
-  color: #0077b6;
+  color: #0077b6; /* Azul escuro */
 }
 
 .task {
-  background-color: #f5f9fc;
+  background-color: #f5f9fc; /* Azul muito suave */
   color: #2c3e50;
   padding: 8px;
   border-radius: 5px;
@@ -228,7 +198,7 @@ body {
 }
 
 .task button {
-  background: #d32f2f;
+  background: #d32f2f; /* Vermelho suave */
   border: none;
   color: white;
   padding: 2px 6px;
@@ -237,7 +207,7 @@ body {
 }
 
 .add-task-button {
-  background-color: #38a1db;
+  background-color: #38a1db; /* Azul mais claro */
   color: white;
   border: none;
   padding: 5px;
@@ -249,9 +219,9 @@ body {
   cursor: pointer;
   transform: scale(1.02);
   transition: all 0.2s ease;
-}
+ }
 
-.remover-lista {
+ .remover-lista {
   background: #d32f2f;
   border: none;
   color: white;
@@ -259,8 +229,8 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.remover-lista:hover {
+ 
+ .remover-lista:hover { 
   transform: scale(1.02);
   transition: all 0.2s ease;
   background: #a82626;
@@ -270,7 +240,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #d1d8e0;
+  background: #d1d8e0; /* Azul muito claro */
   color: #2c3e50;
   padding: 5px 8px;
   border-radius: 5px;
@@ -278,7 +248,7 @@ body {
 }
 
 .member-item button {
-  background: #e74c3c;
+  background: #e74c3c; /* Vermelho suave */
   border: none;
   color: white;
   padding: 2px 6px;
@@ -290,7 +260,7 @@ body {
 .add-column-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #0077b6;
+  background-color: #0077b6; /* Azul escuro */
   color: white;
   border: none;
   border-radius: 6px;
@@ -299,23 +269,6 @@ body {
 }
 
 .add-column-button:hover {
-<<<<<<< HEAD:menu.css
-  background-color: #005f87;
-}
-
-/* Botão de toggle */
-#toggleSidebarBtn {
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  background-color: #0077b6;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1000;
-}
-=======
   background-color: #005f87; /* Azul mais profundo */
 }
 
@@ -349,4 +302,3 @@ body {
 .board {
   flex: 1;
 }
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.css

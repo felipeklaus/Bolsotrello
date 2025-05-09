@@ -188,36 +188,10 @@ function loadMembros() {
   });
 }
 
-<<<<<<< HEAD:menu.js
-
-function toggleSidebar() {
-  const main = document.getElementById('mainContainer');
-  main.classList.toggle('sidebar-hidden');
-}
- function gerenciarPerfil() {
-  alert("Página de gerenciamento de perfil em desenvolvimento.");
-  // Aqui você pode redirecionar ou abrir um modal futuramente
-  // Exemplo: window.location.href = "/perfil.html";
-}
-
-function abrirConfiguracoes() {
-  alert("Página de configurações em desenvolvimento.");
-  // Exemplo futuro: window.location.href = "/configuracoes.html";
-}
-function sair() {
-  const confirmacao = confirm("Tem certeza que deseja sair?");
-  if (confirmacao) {
-    alert("Você saiu com sucesso.");
-    // Exemplo: Redirecionar para página de login
-    window.location.href = "login.html"; // ou qualquer página inicial
-  }
-=======
 function toggleSidebar() {
   const sidebar = document.querySelector('.sidebar');
   const main = document.querySelector('.main');
 
   sidebar.classList.toggle('hidden');
   main.classList.toggle('full-width');
->>>>>>> ede48ddeee65a055e4da1c44d5eeae5e1eca57ea:Menu/menu.js
 }
-
