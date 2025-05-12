@@ -20,15 +20,22 @@ function toggleProfileDropdown() {
   document.getElementById('profileMenu').classList.toggle('hidden');
 }
 
-function addTask(columnId, text = "Nova tarefa") {
+function addTask(columnId, text = "Nova tarefa", completed = false) {
   const column = document.getElementById(columnId);
   const task = document.createElement('div');
   task.className = 'task';
+  if (completed) task.classList.add('completed');
   task.setAttribute('draggable', 'true');
   task.innerHTML = `
     <span contenteditable="true" oninput="saveToStorage()">${text}</span>
-    <button onclick="this.parentElement.remove(); saveToStorage();">X</button>
+    <button class="check-task-button" style="background:#27ae60;" title="Concluir">&#10003;</button>
+    <button onclick="this.parentElement.remove(); saveToStorage();" style="background:#d32f2f;">X</button>
   `;
+  // CHECK button logic
+  task.querySelector('.check-task-button').onclick = function() {
+    task.classList.toggle('completed');
+    saveToStorage();
+  };
   addDragEvents(task);
   column.insertBefore(task, column.lastElementChild);
   saveToStorage();
@@ -58,7 +65,10 @@ function initializeDragAndDrop() {
 function saveToStorage() {
   const data = {};
   document.querySelectorAll('.column').forEach(column => {
-    const tasks = [...column.querySelectorAll('.task span')].map(span => span.innerText);
+    const tasks = [...column.querySelectorAll('.task')].map(task => ({
+      text: task.querySelector('span').innerText,
+      completed: task.classList.contains('completed')
+    }));
     const title = column.querySelector('h3').innerText;
     data[column.id] = { title, tasks };
   });
@@ -76,6 +86,30 @@ function loadFromStorage() {
     createColumn(colId, data[colId].title, data[colId].tasks);
   });
   document.getElementById('project-title').textContent = currentProject;
+}
+
+function createColumn(id, title = "Novo Quadro", tasks = []) {
+  const container = document.getElementById('columns-container');
+  const column = document.createElement('div');
+  column.className = 'column';
+  column.id = id;
+  column.ondrop = drop;
+  column.ondragover = allowDrop;
+  column.innerHTML = `
+    <h3 contenteditable="true" oninput="saveToStorage()">${title}</h3>
+    <button class="add-task-button" onclick="addTask('${id}')">+</button>
+    <button class="remover-lista" onclick="this.parentElement.remove(); saveToStorage();">X</button>
+  `;
+  container.appendChild(column);
+
+  // tasks pode ser array de strings (antigo) ou objetos (novo)
+  tasks.forEach(task => {
+    if (typeof task === 'string') {
+      addTask(id, task, false);
+    } else {
+      addTask(id, task.text, task.completed);
+    }
+  });
 }
 
 function clearBoard() {
