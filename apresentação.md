@@ -3,9 +3,9 @@ Com uma interface intuitiva e recursos poderosos como múltiplos projetos, supor
 
 O projeto foi idealizado e construído por um time de talentos dedicados e apaixonados por tecnologia:
 
-Felipe Klaus 
+Felipe Klaus  
 Wendell Klering 
 Breno Gruber 
 Lucas López 
 Erick 
-Guilherme Vinicius
+Paulo Kushino
