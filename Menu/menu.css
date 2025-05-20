@@ -1,3 +1,8 @@
+/*
+  CSS responsável pelo layout e estilo do menu principal do Bolsotrello.
+  Define estilos para navbar, sidebar, quadro de tarefas, colunas, tarefas, botões e responsividade.
+*/
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,6 +10,7 @@
   font-family: 'Arial', sans-serif;
 }
 
+/* Estilo do corpo da página */
 body {
   background-color: #f5f9fc; /* Cor de fundo suave */
   color: #ffffff; /* Cor do texto principal */
@@ -14,6 +20,7 @@ body {
   flex-direction: column;
 }
 
+/* Barra de navegação superior */
 .navbar {
   background-color: #0077b6; /* Azul escuro */
   padding: 15px 20px;
@@ -22,18 +29,21 @@ body {
   align-items: center;
 }
 
+/* Container do logo */
 .logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+/* Ícone do site */
 .site-icon {
   width: 40px;
   height: 40px;
   border-radius: 20px;
 }
 
+/* Ícone do usuário */
 .user-icon {
   width: 35px;
   height: 35px;
@@ -42,10 +52,12 @@ body {
   cursor: pointer;
 }
 
+/* Dropdown do perfil */
 .profile-dropdown {
   position: relative;
 }
 
+/* Menu suspenso do perfil */
 .profile-menu {
   position: absolute;
   right: 0;
@@ -58,6 +70,7 @@ body {
   flex-direction: column;
 }
 
+/* Botões do menu de perfil */
 .profile-menu button {
   padding: 10px;
   border: none;
@@ -70,16 +83,19 @@ body {
   background-color: #f2f2f2;
 }
 
+/* Classe para esconder elementos */
 .hidden {
   display: none;
 }
 
+/* Estrutura principal: sidebar + board */
 .main {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
+/* Sidebar lateral */
 .sidebar {
   background-color: #e1e9f0; /* Azul claro */
   width: 230px;
@@ -90,6 +106,7 @@ body {
   border-right: 2px solid #c1c8d5;
 }
 
+/* Estilo dos botões e inputs da sidebar */
 .sidebar button,
 .sidebar input {
   padding: 10px;
@@ -105,6 +122,7 @@ body {
   margin-bottom: 5px;
 }
 
+/* Botões coloridos */
 .green-button {
   background-color: #38a1db; /* Azul mais claro */
   color: white;
@@ -115,6 +133,7 @@ body {
   color: #a9d6f5;
 }
 
+/* Botão de projeto */
 .project-button {
   background-color: #4a90e2; /* Azul mais suave */
   color: white;
@@ -145,47 +164,50 @@ body {
   cursor: pointer;
 }
 
+/* Botão de sair */
 .sair-button {
   background-color: #c94242; /* Branco suave */
   color: #ffffff;
 }
 
+/* Quadro principal de tarefas */
 .board {
   flex-grow: 1;
   padding: 40px 20px;
   overflow-x: auto;
   color:#1c3b72;
- 
 }
 
+/* Container das colunas */
 .columns {
   display: flex;
   gap: 20px;
   padding: 10px 0 10px 10px;
-  overflow-x: auto; /* Permite o scroll horizontal */
-  overflow-y: hidden; /* Evita scroll vertical */
+  overflow-x: auto; /* Scroll horizontal */
+  overflow-y: hidden; /* Sem scroll vertical */
   white-space: nowrap; /* Impede quebra de linha */
 }
 
+/* Coluna de tarefas */
 .column {
-  
-  flex: 0 0 220px; /* Define largura fixa de 220px */
-  background-color: #ffffff; /* Branco puro */
+  flex: 0 0 220px; /* Largura fixa */
+  background-color: #ffffff; /* Branco */
   border-radius: 10px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
 }
 
+/* Título da coluna */
 .column h3 {
   font-size: 1.2rem;
   outline: none;
   color: #0077b6; /* Azul escuro */
 }
 
+/* Tarefa individual */
 .task {
   background-color: #f5f9fc; /* Azul muito suave */
   color: #2c3e50;
@@ -197,6 +219,7 @@ body {
   align-items: center;
 }
 
+/* Botões das tarefas */
 .task button {
   background: #d32f2f; /* Vermelho suave */
   border: none;
@@ -206,6 +229,7 @@ body {
   cursor: pointer;
 }
 
+/* Botão para adicionar tarefa */
 .add-task-button {
   background-color: #38a1db; /* Azul mais claro */
   color: white;
@@ -219,9 +243,10 @@ body {
   cursor: pointer;
   transform: scale(1.02);
   transition: all 0.2s ease;
- }
+}
 
- .remover-lista {
+/* Botão para remover coluna */
+.remover-lista {
   background: #d32f2f;
   border: none;
   color: white;
@@ -229,13 +254,14 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
- 
- .remover-lista:hover { 
+
+.remover-lista:hover { 
   transform: scale(1.02);
   transition: all 0.2s ease;
   background: #a82626;
 }
 
+/* Item de membro */
 .member-item {
   display: flex;
   justify-content: space-between;
@@ -257,6 +283,7 @@ body {
   margin-left: 10px;
 }
 
+/* Botão para adicionar coluna */
 .add-column-button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -272,7 +299,7 @@ body {
   background-color: #005f87; /* Azul mais profundo */
 }
 
-/* Botão fixo no canto inferior esquerdo */
+/* Botão flutuante para mostrar/ocultar sidebar */
 #toggle-sidebar-btn {
   position: fixed;
   bottom: 20px;
@@ -286,7 +313,7 @@ body {
   z-index: 1000;
 }
 
-/* Quando a sidebar estiver oculta */
+/* Sidebar oculta */
 .sidebar.hidden {
   display: none;
 }
@@ -303,8 +330,7 @@ body {
   flex: 1;
 }
 
-
-/* ...existing code... */
+/* Tarefa concluída: cor diferente e texto riscado */
 .task.completed {
   background-color: #d4edda !important;
   color: #155724 !important;

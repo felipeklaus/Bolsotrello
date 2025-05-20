@@ -4,17 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BOLSOTRELLO</title>
+  <!-- Importa o CSS do menu -->
   <link rel="stylesheet" href="menu.css" />
 </head>
 
 <body>
+  <!-- Barra de navegação superior -->
   <div class="navbar">
     <div class="logo-container">
+      <!-- Logo do sistema -->
       <img src="https://i.pinimg.com/474x/f4/e3/d6/f4e3d6b55f672d5f2ef716f756fff1f8.jpg" class="site-icon" alt="logo">
       <h1>BOLSOTRELLO</h1>
     </div>
+    <!-- Menu de perfil do usuário -->
     <div class="profile-dropdown">
+      <!-- Ícone do usuário, abre o menu ao clicar -->
       <div class="user-icon" onclick="toggleProfileDropdown()" ><img src="rodinei.jpg"></div>
+      <!-- Menu suspenso com opções de perfil, configurações, ajuda e sair -->
       <div class="profile-menu hidden" id="profileMenu">
         <a href="perfil.html">
         <button>Gerenciar Perfil</button>
@@ -32,49 +38,66 @@
     </div>
   </div>
 
+  <!-- Estrutura principal: sidebar e quadro de tarefas -->
   <div class="main">
+    <!-- Sidebar lateral com gerenciamento de membros e projetos -->
     <div class="sidebar">
+      <!-- Botão para mostrar/ocultar lista de integrantes -->
       <button class="purple-button" onclick="toggleIntegrantes()">Integrante (ADM)</button>
       <div id="integrantes-list" class="hidden"></div>
+      <!-- Campo para adicionar novo membro -->
       <input type="text" id="newMemberInput" placeholder="Novo membro" />
       <button onclick="addMember()">Adicionar Membro</button>
 
       <button class="green-button">Gerenciar Membros</button>
       <hr />
+      <!-- Botão para mostrar/ocultar lista de projetos -->
       <button class="purple-button" onclick="toggleProjetos()">Meus projetos</button>
       <div id="projetos-list" class="hidden"></div>
+      <!-- Campo para adicionar novo projeto -->
       <input type="text" id="newProjectInput" placeholder="Novo Projeto" />
       <button onclick="addProjeto()">Adicionar Projeto</button>
       <hr />
       <button class="green-button">Suporte</button>
+      <!-- Botão para sair do sistema -->
       <button class="sair-button" onclick="window.location.href='../Login/Login.html'">Sair</button>
     </div>
 
+    <!-- Quadro principal de tarefas -->
     <div class="board">
+      <!-- Título do projeto/quadro -->
       <h2 id="project-title">Meu Quadro</h2>
+      <!-- Container das colunas de tarefas -->
       <div class="columns" id="columns-container">
+        <!-- Coluna padrão: A Fazer -->
         <div class="column" id="col-afazer" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3 contenteditable="true" oninput="saveToStorage()">A Fazer</h3>
           <button class="add-task-button" onclick="addTask('col-afazer')">+</button>
         </div>
+        <!-- Coluna padrão: Em Andamento -->
         <div class="column" id="col-andamento" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3 contenteditable="true" oninput="saveToStorage()">Em Andamento</h3>
           <button class="add-task-button" onclick="addTask('col-andamento')">+</button>
         </div>
+        <!-- Coluna padrão: Revisando -->
         <div class="column" id="col-revisando" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3 contenteditable="true" oninput="saveToStorage()">Revisando</h3>
           <button class="add-task-button" onclick="addTask('col-revisando')">+</button>
         </div>
+        <!-- Coluna padrão: Concluído -->
         <div class="column" id="col-concluido" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3 contenteditable="true" oninput="saveToStorage()">Concluído</h3>
           <button class="add-task-button" onclick="addTask('col-concluido')">+</button>
         </div>
       </div>
+      <!-- Botão para adicionar novas listas/colunas -->
       <button class="add-column-button" onclick="addNewColumn()">+ Adicionar Lista</button>
     </div>
   </div>
 
+  <!-- Script principal do menu -->
   <script src="menu.js"></script>
+  <!-- Botão flutuante para mostrar/ocultar sidebar -->
   <button id="toggle-sidebar-btn" onclick="toggleSidebar()">☰</button>
 
 </body>
