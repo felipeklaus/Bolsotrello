@@ -41,41 +41,23 @@
 
       <button class="green-button">Gerenciar Membros</button>
       <hr />
-      <button class="purple-button" onclick="toggleProjetos()">Meus projetos</button>
-      <div id="projetos-list" class="hidden"></div>
       <input type="text" id="newProjectInput" placeholder="Novo Projeto" />
-      <button onclick="addProjeto()">Adicionar Projeto</button>
+      <button onclick="addBoard()">Adicionar Board</button>
+      <div id="projetos-list"></div>
       <hr />
       <button class="green-button">Suporte</button>
       <button class="sair-button" onclick="window.location.href='../Login/Login.html'">Sair</button>
     </div>
 
     <div class="board">
-      <h2 id="project-title">Meu Quadro</h2>
+      <h2 id="project-title">Selecione um Board</h2>
+      <button class="add-column-button" onclick="addColumn()">+ Adicionar Lista</button>
       <div class="columns" id="columns-container">
-        <div class="column" id="col-afazer" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">A Fazer</h3>
-          <button class="add-task-button" onclick="addTask('col-afazer')">+</button>
-        </div>
-        <div class="column" id="col-andamento" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Em Andamento</h3>
-          <button class="add-task-button" onclick="addTask('col-andamento')">+</button>
-        </div>
-        <div class="column" id="col-revisando" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Revisando</h3>
-          <button class="add-task-button" onclick="addTask('col-revisando')">+</button>
-        </div>
-        <div class="column" id="col-concluido" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Concluído</h3>
-          <button class="add-task-button" onclick="addTask('col-concluido')">+</button>
-        </div>
       </div>
-      <button class="add-column-button" onclick="addNewColumn()">+ Adicionar Lista</button>
     </div>
   </div>
 
   <script src="menu.js"></script>
   <button id="toggle-sidebar-btn" onclick="toggleSidebar()">☰</button>
-
 </body>
 </html>
