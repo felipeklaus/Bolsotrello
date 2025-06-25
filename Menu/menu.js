@@ -120,7 +120,7 @@ function createColumn(id, title = "Nova Lista", tasks = []) {
   column.ondragover = allowDrop;
   column.innerHTML = `
     <h3 contenteditable="true" onblur="updateColumnTitle('${id}', this.innerText)">${title}</h3>
-    <button class="add-task-button" onclick="addTask('${id}')">+</button>
+    <button class="add-task-button" onclick="addTaskClick(event, '${id}')">+</button>
   `;
   container.appendChild(column);
 
@@ -237,4 +237,9 @@ function toggleIntegrantes() {
 }
 function toggleProfileDropdown() {
   document.getElementById('profileMenu').classList.toggle('hidden');
+}
+
+function addTaskClick(event, columnId) {
+  event.preventDefault();
+  addTask(columnId);
 }
