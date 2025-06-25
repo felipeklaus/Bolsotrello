@@ -69,26 +69,7 @@
       <h2 id="project-title">Meu Quadro</h2>
       <!-- Container das colunas de tarefas -->
       <div class="columns" id="columns-container">
-        <!-- Coluna padrão: A Fazer -->
-        <div class="column" id="col-afazer" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">A Fazer</h3>
-          <button class="add-task-button" onclick="addTask('col-afazer')">+</button>
-        </div>
-        <!-- Coluna padrão: Em Andamento -->
-        <div class="column" id="col-andamento" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Em Andamento</h3>
-          <button class="add-task-button" onclick="addTask('col-andamento')">+</button>
-        </div>
-        <!-- Coluna padrão: Revisando -->
-        <div class="column" id="col-revisando" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Revisando</h3>
-          <button class="add-task-button" onclick="addTask('col-revisando')">+</button>
-        </div>
-        <!-- Coluna padrão: Concluído -->
-        <div class="column" id="col-concluido" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3 contenteditable="true" oninput="saveToStorage()">Concluído</h3>
-          <button class="add-task-button" onclick="addTask('col-concluido')">+</button>
-        </div>
+        <!-- As colunas serão criadas dinamicamente pelo JS -->
       </div>
       <!-- Botão para adicionar novas listas/colunas -->
       <button class="add-column-button" onclick="addNewColumn()">+ Adicionar Lista</button>

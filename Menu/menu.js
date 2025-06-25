@@ -3,17 +3,61 @@
   Gerencia projetos, membros, colunas, tarefas, drag-and-drop, e persistência no localStorage.
 */
 
-// Projeto atual selecionado
-let currentProject = 'Projeto 1';
-// Contador para criar IDs únicos para novas colunas
-let columnCounter = 0;
+// --- Funções de requisição para a API REST ---
+const API_BASE = "https://personal-ga2xwx9j.outsystemscloud.com/Trellospl/rest/Trello";
 
-// Inicialização ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-  loadProjetos();      // Carrega lista de projetos
-  loadMembros();       // Carrega lista de membros
-  loadFromStorage();   // Carrega quadro do projeto atual
-  initializeDragAndDrop(); // Inicializa drag-and-drop nas tarefas
+// Boards
+async function getBoards() {
+  const res = await fetch(`${API_BASE}/GetBoards`);
+  return res.json();
+}
+async function getBoardFull(id) {
+  const res = await fetch(`${API_BASE}/GetCompleteBoard?id=${id}`);
+  return res.json();
+}
+async function createOrUpdateBoard(board) {
+  const res = await fetch(`${API_BASE}/CreateOrUpdateBoard`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(board)
+  });
+  return res.json();
+}
+
+// Colunas
+async function createOrUpdateColumn(column) {
+  const res = await fetch(`${API_BASE}/CreateOrUpdateColumn`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(column)
+  });
+  return res.json();
+}
+
+// Tarefas
+async function createOrUpdateTask(task) {
+  const res = await fetch(`${API_BASE}/CreateOrUpdateTask`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(task)
+  });
+  return res.json();
+}
+async function deleteTaskAPI(id) {
+  const res = await fetch(`${API_BASE}/DeleteTask?id=${id}`, { method: "DELETE" });
+  return res.ok;
+}
+
+// --- Variáveis globais ---
+let currentProject = null; // Id do board selecionado
+let boardsCache = []; // Lista de boards carregados
+
+// --- Inicialização ao carregar a página ---
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadProjetos();
+  loadMembros(); // Membros continuam locais
+  await loadFromAPI();
+  initializeDragAndDrop();
 });
 
 /* Alterna a exibição da lista de projetos */
@@ -32,26 +76,44 @@ function toggleProfileDropdown() {
 }
 
 /* Adiciona uma nova tarefa a uma coluna */
-function addTask(columnId, text = "Nova tarefa", completed = false) {
+async function addTask(columnId, text = "Nova tarefa", completed = false, taskId = null) {
+  if (!taskId) {
+    // Cria nova tarefa na API
+    await createOrUpdateTask({ Name: text, ColumnId: columnId, Done: completed });
+    await loadFromAPI();
+    return;
+  }
+  // Renderiza tarefa na coluna
   const column = document.getElementById(columnId);
   const task = document.createElement('div');
   task.className = 'task';
   if (completed) task.classList.add('completed');
   task.setAttribute('draggable', 'true');
   task.innerHTML = `
-    <span contenteditable="true" oninput="saveToStorage()">${text}</span>
-    <button class="check-task-button" style="background:#27ae60;" title="Concluir">&#10003;</button>
-    <button onclick="this.parentElement.remove(); saveToStorage();" style="background:#d32f2f;">X</button>
+    <span contenteditable="true" onblur="updateTask('${taskId}', '${columnId}', this.innerText, ${completed})">${text}</span>
+    <button class="check-task-button" style="background:#27ae60;" title="Concluir" onclick="toggleTaskDone('${taskId}', '${columnId}', this)">${completed ? '&#10003;' : '&#10003;'}</button>
+    <button onclick="deleteTaskAPI('${taskId}')" style="background:#d32f2f;">X</button>
   `;
-  // Botão de concluir tarefa
-  task.querySelector('.check-task-button').onclick = function() {
-    task.classList.toggle('completed');
-    saveToStorage();
-  };
   addDragEvents(task);
-  // Insere a tarefa antes do último elemento da coluna (normalmente o botão de adicionar)
   column.insertBefore(task, column.lastElementChild);
-  saveToStorage();
+}
+
+async function updateTask(taskId, columnId, newText, done) {
+  await createOrUpdateTask({ Id: taskId, Name: newText, ColumnId: columnId, Done: done });
+  await loadFromAPI();
+}
+
+async function toggleTaskDone(taskId, columnId, btn) {
+  const taskDiv = btn.parentElement;
+  const text = taskDiv.querySelector('span').innerText;
+  const done = !taskDiv.classList.contains('completed');
+  await createOrUpdateTask({ Id: taskId, Name: text, ColumnId: columnId, Done: done });
+  await loadFromAPI();
+}
+
+async function deleteTaskAPI(taskId) {
+  await deleteTaskAPI(taskId);
+  await loadFromAPI();
 }
 
 /* Permite soltar elementos na coluna (drag-and-drop) */
@@ -97,17 +159,18 @@ function saveToStorage() {
 }
 
 /* Carrega o quadro do projeto atual do localStorage */
-function loadFromStorage() {
+async function loadFromAPI() {
   clearBoard();
-  const allData = JSON.parse(localStorage.getItem('bolsotrelloData')) || {};
-  const data = allData[currentProject] || {};
-  Object.keys(data).forEach(colId => {
-    createColumn(colId, data[colId].title, data[colId].tasks);
-  });
-  document.getElementById('project-title').textContent = currentProject;
+  if (!currentProject) return;
+  const board = await getBoardFull(currentProject);
+  document.getElementById('project-title').textContent = board.Name;
+  if (board.Columns) {
+    board.Columns.forEach(col => {
+      createColumn(col.Id, col.Name, col.Tasks || []);
+    });
+  }
 }
 
-/* Cria uma nova coluna no quadro */
 function createColumn(id, title = "Novo Quadro", tasks = []) {
   const container = document.getElementById('columns-container');
   const column = document.createElement('div');
@@ -116,91 +179,68 @@ function createColumn(id, title = "Novo Quadro", tasks = []) {
   column.ondrop = drop;
   column.ondragover = allowDrop;
   column.innerHTML = `
-    <h3 contenteditable="true" oninput="saveToStorage()">${title}</h3>
+    <h3 contenteditable="true" onblur="updateColumnTitle('${id}', this.innerText)">${title}</h3>
     <button class="add-task-button" onclick="addTask('${id}')">+</button>
-    <button class="remover-lista" onclick="this.parentElement.remove(); saveToStorage();">X</button>
   `;
   container.appendChild(column);
 
-  // Adiciona tarefas à coluna (compatível com versões antigas e novas)
+  // Adiciona tarefas à coluna
   tasks.forEach(task => {
-    if (typeof task === 'string') {
-      addTask(id, task, false);
-    } else {
-      addTask(id, task.text, task.completed);
-    }
+    addTask(id, task.Name, task.Done, task.Id);
   });
 }
 
-/* Limpa todas as colunas do quadro */
 function clearBoard() {
   document.getElementById('columns-container').innerHTML = '';
 }
 
-/* Cria uma nova coluna extra (usado ao clicar em "+ Adicionar Lista") */
-function addNewColumn() {
-  const id = `col-extra-${++columnCounter}`;
-  createColumn(id);
-  saveToStorage();
-}
-
-/* Adiciona um novo projeto à lista */
-function addProjeto() {
-  const input = document.getElementById('newProjectInput');
-  const name = input.value.trim();
-  if (!name) return;
-  const projetos = JSON.parse(localStorage.getItem('projetos')) || [];
-  if (!projetos.includes(name)) projetos.push(name);
-  localStorage.setItem('projetos', JSON.stringify(projetos));
-  input.value = '';
-  loadProjetos();
-}
-
-/* Remove um projeto da lista */
-function removeProjeto(name) {
-  let projetos = JSON.parse(localStorage.getItem('projetos')) || [];
-  projetos = projetos.filter(p => p !== name);
-  localStorage.setItem('projetos', JSON.stringify(projetos));
-
-  // Remove dados do quadro do projeto excluído
-  const allData = JSON.parse(localStorage.getItem('bolsotrelloData')) || {};
-  delete allData[name];
-  localStorage.setItem('bolsotrelloData', JSON.stringify(allData));
-
-  // Seleciona outro projeto se o atual for removido
-  if (currentProject === name) {
-    currentProject = projetos[0] || 'Projeto 1';
-  }
-
-  loadProjetos();
-  loadFromStorage();
-}
-
-/* Carrega a lista de projetos na sidebar */
-function loadProjetos() {
+// --- Projetos (Boards) ---
+async function loadProjetos() {
   const container = document.getElementById('projetos-list');
   container.innerHTML = '';
-  const projetos = JSON.parse(localStorage.getItem('projetos')) || ['Projeto 1'];
-  projetos.forEach(name => {
+  boardsCache = await getBoards();
+  if (boardsCache.length > 0 && !currentProject) currentProject = boardsCache[0].Id;
+  boardsCache.forEach(board => {
     const div = document.createElement('div');
     div.className = 'project-button';
     div.innerHTML = `
-      <span onclick="selectProjeto('${name}')">${name}</span>
-      <button onclick="removeProjeto('${name}')">X</button>
+      <span onclick="selectProjeto('${board.Id}')">${board.Name}</span>
     `;
-    if (name === currentProject) div.classList.add('active');
+    if (board.Id === currentProject) div.classList.add('active');
     container.appendChild(div);
   });
 }
 
-/* Seleciona um projeto para exibir */
-function selectProjeto(name) {
-  currentProject = name;
-  loadProjetos();
-  loadFromStorage();
+async function selectProjeto(boardId) {
+  currentProject = boardId;
+  await loadProjetos();
+  await loadFromAPI();
 }
 
-/* Adiciona um novo membro à lista */
+async function addProjeto() {
+  const input = document.getElementById('newProjectInput');
+  const name = input.value.trim();
+  if (!name) return;
+  await createOrUpdateBoard({ Name: name });
+  input.value = '';
+  await loadProjetos();
+  await loadFromAPI();
+}
+
+// --- Colunas ---
+async function addNewColumn() {
+  const name = prompt("Nome da nova lista:");
+  if (!name) return;
+  await createOrUpdateColumn({ Name: name, BoardId: currentProject });
+  await loadFromAPI();
+}
+
+async function updateColumnTitle(columnId, newTitle) {
+  await createOrUpdateColumn({ Id: columnId, Name: newTitle, BoardId: currentProject });
+  await loadFromAPI();
+}
+
+// --- Membros (local, pois a API não tem endpoint) ---
 function addMember() {
   const input = document.getElementById('newMemberInput');
   const name = input.value.trim();
@@ -211,16 +251,12 @@ function addMember() {
   input.value = '';
   loadMembros();
 }
-
-/* Remove um membro da lista */
 function removeMember(name) {
   let members = JSON.parse(localStorage.getItem('membros')) || [];
   members = members.filter(m => m !== name);
   localStorage.setItem('membros', JSON.stringify(members));
   loadMembros();
 }
-
-/* Carrega a lista de membros na sidebar */
 function loadMembros() {
   const list = document.getElementById('integrantes-list');
   list.innerHTML = '';
@@ -236,11 +272,10 @@ function loadMembros() {
   });
 }
 
-/* Alterna a exibição da sidebar */
+// --- Sidebar e perfil ---
 function toggleSidebar() {
   const sidebar = document.querySelector('.sidebar');
   const main = document.querySelector('.main');
-
   sidebar.classList.toggle('hidden');
   main.classList.toggle('full-width');
 }
