@@ -101,11 +101,7 @@ async function loadFromAPI() {
   clearBoard();
   if (!currentProject) return;
   const board = await getBoardFull(currentProject);
-  if (!board || !board.Name) {
-    document.getElementById('project-title').textContent = "Meu Quadro";
-    return;
-  }
-  document.getElementById('project-title').textContent = board.Name.replace("cliente-bolsotrello-", "");
+  console.log("Board retornado:", board); // Adicione isso para debug
   if (board.ColumnStrs) {
     board.ColumnStrs.forEach(colStr => {
       const col = colStr.Column;
@@ -115,6 +111,7 @@ async function loadFromAPI() {
 }
 
 function createColumn(id, title = "Nova Lista", tasks = []) {
+  console.log("Renderizando coluna:", id, title);
   const container = document.getElementById('columns-container');
   const column = document.createElement('div');
   column.className = 'column';
@@ -174,7 +171,7 @@ async function toggleTaskDone(taskId, columnId, btn) {
 }
 
 async function deleteTaskAPI(taskId) {
-  await deleteTaskAPI(taskId);
+  await fetch(`${API_BASE}/DeleteTask?id=${taskId}`, { method: "DELETE" });
   await loadFromAPI();
 }
 
