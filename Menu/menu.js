@@ -26,15 +26,21 @@ async function createOrUpdateColumn(column) {
   return res.json();
 }
 async function createOrUpdateTask(task) {
+  // MANTENHA ESTE LOG PARA DEBUG DE TASKS
+  console.log("Enviando para API:", task);
   const res = await fetch(`${API_BASE}/CreateOrUpdateTask`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(task)
   });
-  return res.json();
+  const data = await res.json();
+  // MANTENHA ESTE LOG PARA DEBUG DE TASKS
+  console.log("Resposta da API:", data);
+  
+  return data;
 }
 async function deleteTaskAPI(id) {
-  const res = await fetch(`${API_BASE}/DeleteTask?id=${id}`, { method: "DELETE" });
+  const res = await fetch(`${API_BASE}/DeleteTask?TaskId=${id}`, { method: "DELETE" });
   return res.ok;
 }
 
@@ -101,17 +107,17 @@ async function loadFromAPI() {
   clearBoard();
   if (!currentProject) return;
   const board = await getBoardFull(currentProject);
-  console.log("Board retornado:", board); // Adicione isso para debug
   if (board.ColumnStrs) {
     board.ColumnStrs.forEach(colStr => {
       const col = colStr.Column;
-      createColumn(col.Id, col.Title ?? "Sem nome", col.Tasks ?? []);
+      // O array de tasks pode estar em colStr.Tasks ou col.Tasks
+      const tasks = colStr.Tasks ?? col.Tasks ?? [];
+      createColumn(col.Id, col.Title ?? "Sem nome", tasks);
     });
   }
 }
 
 function createColumn(id, title = "Nova Lista", tasks = []) {
-  console.log("Renderizando coluna:", id, title);
   const container = document.getElementById('columns-container');
   const column = document.createElement('div');
   column.className = 'column';
@@ -126,7 +132,8 @@ function createColumn(id, title = "Nova Lista", tasks = []) {
 
   // Adiciona tarefas à coluna
   tasks.forEach(task => {
-    addTask(id, task.Name, task.Done, task.Id);
+    // Garante que sempre mostra algo, mesmo se Title não vier
+    addTask(id, task.Title ? task.Title : `Tarefa ${task.Id}`, task.Done, task.Id);
   });
 }
 
@@ -138,7 +145,7 @@ function clearBoard() {
 async function addTask(columnId, text = "Nova tarefa", completed = false, taskId = null) {
   if (!taskId) {
     // Cria nova tarefa na API
-    await createOrUpdateTask({ Name: text, ColumnId: columnId, Done: completed });
+    await createOrUpdateTask({ Title: text, ColumnId: columnId, Done: completed });
     await loadFromAPI();
     return;
   }
@@ -158,7 +165,7 @@ async function addTask(columnId, text = "Nova tarefa", completed = false, taskId
 }
 
 async function updateTask(taskId, columnId, newText, done) {
-  await createOrUpdateTask({ Id: taskId, Name: newText, ColumnId: columnId, Done: done });
+  await createOrUpdateTask({ Id: taskId, Title: newText, ColumnId: columnId, Done: done });
   await loadFromAPI();
 }
 
@@ -166,12 +173,12 @@ async function toggleTaskDone(taskId, columnId, btn) {
   const taskDiv = btn.parentElement;
   const text = taskDiv.querySelector('span').innerText;
   const done = !taskDiv.classList.contains('completed');
-  await createOrUpdateTask({ Id: taskId, Name: text, ColumnId: columnId, Done: done });
+  await createOrUpdateTask({ Id: taskId, Title: text, ColumnId: columnId, Done: done });
   await loadFromAPI();
 }
 
 async function deleteTaskAPI(taskId) {
-  await fetch(`${API_BASE}/DeleteTask?id=${taskId}`, { method: "DELETE" });
+  await fetch(`${API_BASE}/DeleteTask?TaskId=${taskId}`, { method: "DELETE" });
   await loadFromAPI();
 }
 
@@ -241,5 +248,7 @@ function toggleProfileDropdown() {
 
 function addTaskClick(event, columnId) {
   event.preventDefault();
-  addTask(columnId);
+  const text = prompt("Digite o nome da tarefa:");
+  if (!text) return;
+  addTask(columnId, text);
 }
